@@ -8,7 +8,7 @@ Before attempting to compile these examples, ensure you have:
 2. [CMake](https://cmake.org/download/) installed (version 3.10+).
 3. The Accellera SystemC library compiled and installed on your system.
 
-*If you do not have SystemC installed, please read [Tutorial 0.2: Installation & Setup](https://learnsystemc.in/tutorials/01-systemc-installation).*
+*If you do not have SystemC installed, please read [Tutorial 0.2: Installation & Setup](https://learn-systemc.com/tutorials/01-systemc-installation).*
 
 ## Structure
 Each sub-folder in this directory represents an independent, compilable SystemC project.
