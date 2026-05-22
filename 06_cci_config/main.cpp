@@ -1,6 +1,7 @@
 #include <systemc>
 #include <cci_configuration>
 #include <iostream>
+#include <sstream>
 
 class MyIP : public sc_core::sc_module {
 public:
@@ -17,6 +18,18 @@ public:
     }
 
 private:
+    void end_of_elaboration() override {
+        auto broker = cci::cci_get_global_broker(cci::cci_originator(name()));
+        auto unused = broker.get_unconsumed_preset_values();
+
+        for (const auto& preset : unused) {
+            std::ostringstream msg;
+            msg << "unused CCI preset '" << preset.first
+                << "'; check the hierarchical parameter name";
+            SC_REPORT_WARNING("CCI_CONFIG", msg.str().c_str());
+        }
+    }
+
     void run() {
         std::cout << "@" << sc_core::sc_time_stamp() 
                   << " [MyIP] Booting up with baud rate: " 
@@ -32,11 +45,12 @@ private:
 };
 
 int sc_main(int argc, char* argv[]) {
-    // Before instantiating the module, we can use the CCI Broker to set the parameter globally!
+    // Before instantiating the module, use the CCI broker to set parameters globally.
     cci::cci_broker_handle broker = cci::cci_get_global_broker(cci::cci_originator("sc_main"));
     
     std::cout << "Setting baud_rate to 115200 via CCI Broker..." << std::endl;
     broker.set_preset_cci_value("uart_instance.baud_rate", cci::cci_value(115200));
+    broker.set_preset_cci_value("uart_instnace.baud_rate", cci::cci_value(4800)); // Intentional typo for validation demo.
 
     // Instantiate the module
     MyIP uart("uart_instance");

@@ -13,7 +13,12 @@ Before attempting to compile these examples, ensure you have:
 ## Structure
 Each sub-folder in this directory represents an independent, compilable SystemC project.
 - `01_hello_world/`: The absolute basics of starting the SystemC simulation kernel.
-- *(More examples matching the website chapters will be added here!)*
+- `02_virtual_platform/`: A small TLM-style platform shape.
+- `03_modules_processes/`: Modules, processes, and scheduler basics.
+- `04_ports_signals/`: Ports, signals, and channel binding.
+- `05_tlm_basics/`: Basic TLM transaction flow.
+- `06_cci_config/`: CCI presets, broker lookup, and unconsumed-preset validation.
+- `07_systemc_ams/`: AMS modeling entry point.
 
 ## Compiling an Example
 
@@ -43,3 +48,13 @@ cmake --build . --config Release
 # Run it
 Release\hello_world.exe
 ```
+
+## CCI Example Note
+
+The `06_cci_config` example uses both SystemC and the SystemC CCI proof-of-concept library:
+
+```bash
+cmake .. -DSystemC_ROOT=/usr/local/systemc -DSystemCCCI_ROOT=/usr/local/systemc-cci
+```
+
+It intentionally creates one misspelled preset name so you can see how a platform can detect unconsumed configuration values before simulation results become misleading.
