@@ -8,7 +8,7 @@ Before attempting to compile these examples, ensure you have:
 2. [CMake](https://cmake.org/download/) installed (version 3.10+).
 3. The Accellera SystemC library compiled and installed on your system.
 
-*If you do not have SystemC installed, please read [Tutorial 0.2: Installation & Setup](https://learn-systemc.com/tutorials/01-systemc-installation).*
+*If you do not have SystemC installed, please read [Installation & Setup](https://learn-systemc.com/tutorials/002-installation-and-setup).*
 
 ## Structure
 Each sub-folder in this directory represents an independent, compilable SystemC project.
@@ -19,6 +19,8 @@ Each sub-folder in this directory represents an independent, compilable SystemC 
 - `05_tlm_basics/`: Basic TLM transaction flow.
 - `06_cci_config/`: CCI presets, broker lookup, and unconsumed-preset validation.
 - `07_systemc_ams/`: AMS modeling entry point.
+- `08_uvm_systemc/`: UVM-SystemC starter shape for components, phases, and reports.
+- `09_hls_subset/`: HLS-oriented SystemC subset example with clocked behavior.
 
 ## Compiling an Example
 
